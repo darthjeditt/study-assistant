@@ -1,0 +1,4 @@
+{
+  "include": ["*", "**/*"],
+  "exclude": ["**/lib", "**/.autocomplete", "**/_trash", "**/*_ui.py"]
+}

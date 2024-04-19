@@ -1,0 +1,16 @@
+{
+  "python.analysis.extraPaths": ["./lib"],
+  "todo-tree.general.tags": [
+    "BUG",
+    "HACK",
+    "FIXME",
+    "TODO",
+    "XXX",
+    "NOTE",
+    "[ ]",
+    "[x]",
+    "[o]",
+    "[-]"
+  ],
+  "autoDocstring.quoteStyle": "'''"
+}
