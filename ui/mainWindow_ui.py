@@ -56,6 +56,7 @@ class Ui_MainWindow(object):
 
         self.studyList = QPlainTextEdit(self.centralwidget)
         self.studyList.setObjectName(u"studyList")
+        self.studyList.setEnabled(True)
         sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
@@ -130,34 +131,7 @@ class Ui_MainWindow(object):
         self.actionStudy_Settings.setText(QCoreApplication.translate("MainWindow", u"Study Settings", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Today's Study Session", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Timer", None))
-        self.startBtn.setText(QCoreApplication.translate("MainWindow", u"Start/Pause", None))
+        self.startBtn.setText(QCoreApplication.translate("MainWindow", u"Start", None))
         self.menuSettings.setTitle(QCoreApplication.translate("MainWindow", u"Settings", None))
     # retranslateUi
 
-
-
-
-import typing
-if typing.TYPE_CHECKING:
-
-    class _TypeHint:
-        """Auto-generated type hinting class"""
-
-        MainWindow: QMainWindow = QMainWindow()
-        actionGeneral: QAction = QAction(MainWindow)
-        actionBlocked_Apps: QAction = QAction(MainWindow)
-        actionStudy_Settings: QAction = QAction(MainWindow)
-        centralwidget: QWidget = QWidget(MainWindow)
-        verticalLayout: QVBoxLayout = QVBoxLayout(centralwidget)
-        horizontalLayout: QHBoxLayout = QHBoxLayout()
-        verticalLayout_3: QVBoxLayout = QVBoxLayout()
-        label: QLabel = QLabel(centralwidget)
-        studyList: QPlainTextEdit = QPlainTextEdit(centralwidget)
-        verticalLayout_2: QVBoxLayout = QVBoxLayout()
-        label_2: QLabel = QLabel(centralwidget)
-        timer: QLCDNumber = QLCDNumber(centralwidget)
-        startBtn: QPushButton = QPushButton(centralwidget)
-        progressBar: QProgressBar = QProgressBar(centralwidget)
-        menubar: QMenuBar = QMenuBar(MainWindow)
-        menuSettings: QMenu = QMenu(menubar)
-        statusbar: QStatusBar = QStatusBar(MainWindow)
