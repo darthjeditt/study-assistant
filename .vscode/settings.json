@@ -1,5 +1,5 @@
 {
-  "python.analysis.extraPaths": ["./lib"],
+  // "python.analysis.extraPaths": ["./lib"],
   "todo-tree.general.tags": [
     "BUG",
     "HACK",
