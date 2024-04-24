@@ -17,9 +17,11 @@ class MainWindow(QtWidgets.QMainWindow, window.Ui_MainWindow):
         self.setStyleSheet(css.STYLESHEET)
         self.setWindowTitle("Main Window")
         self.timer.setDigitCount(8)
-        self.timer.display("04:00:00")
+        self._seconds = 120  # 14400
+        self.timer.display(
+            f"{self._seconds // 3600:02}:{self._seconds // 60:02}:{self._seconds % 60:02}"
+        )
         self.progressBar.setValue(0)
-        self._seconds = 14400
         self.total_seconds = self._seconds
         self.countDown = QtCore.QTimer(self)
 
@@ -31,30 +33,28 @@ class MainWindow(QtWidgets.QMainWindow, window.Ui_MainWindow):
 
     def startBtnClicked(self):
         if self.startBtn.text() == "Start":
-            self.startBtn.setText("Stop")
+            self.startBtn.setText("Pause")
             self.countDown.start(1000)
             print("Timer Started")
-        elif self.startBtn.text() == "Stop":
+        elif self.startBtn.text() == "Pause":
             self.countDown.stop()
-            print("Timer Stopped")
-            self._seconds = self.total_seconds
+            print("Timer Paused")
             self.startBtn.setText("Start")
-            self.timer.display("04:00:00")
             self.progressBar.setValue(0)
-
-    def displayTime(self):
-        hours, remainder = divmod(self._seconds, 3600)
-        minutes, seconds = divmod(remainder, 60)
-        self.timer.display(f"{hours:02}:{minutes:02}:{seconds:02}")
 
     def countDownTimer(self):
         self._seconds -= 1
-        self.displayTime()
         self.progressBar.setValue((1 - self._seconds / self.total_seconds) * 100)
+        print((1 - self._seconds / self.total_seconds) * 100)
+        self.timer.display(
+            f"{self._seconds // 3600:02}:{self._seconds // 60:02}:{self._seconds % 60:02}"
+        )
         if self._seconds <= 0:
             self.countDown.stop()
             self.startBtn.setText("Start")
-            self.timer.display("04:00:00")
+            self.timer.display(
+                f"{self._seconds // 3600:02}:{self._seconds // 60:02}:{self._seconds % 60:02}"
+            )
             self.progressBar.setValue(100)
             print("Timer Finished")
 

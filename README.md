@@ -1,6 +1,5 @@
 # study-assistant TO DO:
 
-
 [] - Main window UI
 [] - countdown timer working (including start pause button), updates in real-time.
 [] - Progress bar that follows countdown timer.
