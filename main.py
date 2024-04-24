@@ -29,8 +29,6 @@ class MainWindow(QtWidgets.QMainWindow, window.Ui_MainWindow):
         self.startBtn.clicked.connect(self.startBtnClicked)
         self.countDown.timeout.connect(self.countDownTimer)
 
-        self.studyList.setEnabled(False)
-
     def startBtnClicked(self):
         if self.startBtn.text() == "Start":
             self.startBtn.setText("Pause")
@@ -57,6 +55,9 @@ class MainWindow(QtWidgets.QMainWindow, window.Ui_MainWindow):
             )
             self.progressBar.setValue(100)
             print("Timer Finished")
+
+    def studyListStuff(self):
+        self.studyList.addItem("Item 1")
 
 
 if __name__ == "__main__":

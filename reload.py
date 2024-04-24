@@ -6,7 +6,6 @@ import os
 
 
 def reloadModules(modules: list[types.ModuleType | str]):
-    """Reload the specified modules or module paths if we're in DEV mode (optionally forced)"""
 
     for mod in modules:
         if isinstance(mod, str):

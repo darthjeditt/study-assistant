@@ -17,9 +17,9 @@ from PySide6.QtGui import (QAction, QBrush, QColor, QConicalGradient,
     QPainter, QPalette, QPixmap, QRadialGradient,
     QTransform)
 from PySide6.QtWidgets import (QApplication, QHBoxLayout, QLCDNumber, QLabel,
-    QMainWindow, QMenu, QMenuBar, QPlainTextEdit,
-    QProgressBar, QPushButton, QSizePolicy, QStatusBar,
-    QVBoxLayout, QWidget)
+    QListWidget, QListWidgetItem, QMainWindow, QMenu,
+    QMenuBar, QProgressBar, QPushButton, QSizePolicy,
+    QStatusBar, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -54,10 +54,9 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addWidget(self.label)
 
-        self.studyList = QPlainTextEdit(self.centralwidget)
+        self.studyList = QListWidget(self.centralwidget)
         self.studyList.setObjectName(u"studyList")
-        self.studyList.setEnabled(True)
-        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.studyList.sizePolicy().hasHeightForWidth())
