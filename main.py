@@ -1,4 +1,5 @@
 from PySide6 import QtCore, QtWidgets, QtGui
+from studySettings import DialogApp
 from ui import mainWindow_ui as window
 from ui import mainWindow_css as css
 from reload import reloadModules
@@ -24,10 +25,12 @@ class MainWindow(QtWidgets.QMainWindow, window.Ui_MainWindow):
         self.progressBar.setValue(0)
         self.total_seconds = self._seconds
         self.countDown = QtCore.QTimer(self)
+        self.studyListStuff()
 
         # connections
         self.startBtn.clicked.connect(self.startBtnClicked)
         self.countDown.timeout.connect(self.countDownTimer)
+        self.actionStudy_Settings.triggered.connect(self.changeStudyList)
 
     def startBtnClicked(self):
         if self.startBtn.text() == "Start":
@@ -38,7 +41,7 @@ class MainWindow(QtWidgets.QMainWindow, window.Ui_MainWindow):
             self.countDown.stop()
             print("Timer Paused")
             self.startBtn.setText("Start")
-            self.progressBar.setValue(0)
+            self.progressBar.setValue((1 - self._seconds / self.total_seconds) * 100)
 
     def countDownTimer(self):
         self._seconds -= 1
@@ -58,6 +61,10 @@ class MainWindow(QtWidgets.QMainWindow, window.Ui_MainWindow):
 
     def studyListStuff(self):
         self.studyList.addItem("Item 1")
+
+    def changeStudyList(self):
+        self.dialog = DialogApp(self)
+        self.dialog.show()
 
 
 if __name__ == "__main__":
