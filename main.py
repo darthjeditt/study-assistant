@@ -1,13 +1,29 @@
 from PySide6 import QtCore, QtWidgets, QtGui
-from studySettings import DialogApp
 from ui import mainWindow_ui as window
 from ui import mainWindow_css as css
+from ui import studySettingsWindow_ui as studySettings
 from reload import reloadModules
 
 import sys
 import time
 
 reloadModules([window, css])
+
+
+class StudySettingsDialog(QtWidgets.QDialog, studySettings.Ui_countDownDialog):
+    timeAdjustment = QtCore.Signal(int)
+
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setupUi(self)
+        self.setStyleSheet(css.STYLESHEET)
+
+        # connections
+        self.buttonBox.accepted.connect(self.saveTime)
+
+    def saveTime(self):
+        newTime = int(self.adjustTimerSeconds.text())
+        self.timeAdjustment.emit(newTime)
 
 
 class MainWindow(QtWidgets.QMainWindow, window.Ui_MainWindow):
@@ -26,6 +42,7 @@ class MainWindow(QtWidgets.QMainWindow, window.Ui_MainWindow):
         self.total_seconds = self._seconds
         self.countDown = QtCore.QTimer(self)
         self.studyListStuff()
+        self.studySettings = studySettings.Ui_countDownDialog()
 
         # connections
         self.startBtn.clicked.connect(self.startBtnClicked)
@@ -60,11 +77,27 @@ class MainWindow(QtWidgets.QMainWindow, window.Ui_MainWindow):
             print("Timer Finished")
 
     def studyListStuff(self):
-        self.studyList.addItem("Item 1")
+
+        funny = 100
+
+        while funny > 0:
+            self.studyList.addItem("STUDY LOTS OF STUFF")
+            funny -= 1
 
     def changeStudyList(self):
-        self.dialog = DialogApp(self)
-        self.dialog.show()
+        self.studySettingsDialog = StudySettingsDialog(self)
+        self.studySettingsDialog.timeAdjustment.connect(self.changeTime)
+        self.studySettingsDialog.show()
+
+    def changeTime(self, new_time):
+        self._seconds = new_time
+        self.updateDisplayTimer()
+
+    def updateDisplayTimer(self):
+        # Update the timer display to reflect the new time
+        self.timer.display(
+            f"{self._seconds // 3600:02}:{(self._seconds % 3600) // 60:02}:{self._seconds % 60:02}"
+        )
 
 
 if __name__ == "__main__":
